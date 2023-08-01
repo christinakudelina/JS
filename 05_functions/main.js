@@ -1,8 +1,8 @@
 // Задача 1
-function getAge(age) {
+function getAge(birthYear) {
   let currentDate = new Date();
   let currentYear = currentDate.getFullYear();
-  let currentAge = currentYear - age
+  let currentAge = currentYear - birthYear
 
   return currentAge
 }
