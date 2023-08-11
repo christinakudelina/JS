@@ -9,17 +9,17 @@ let user2 = {
   age: 21
 }
 
-function getOlderUser(userOne, userTwo){
+function getOlderUser(userOne, userTwo) {
   if (user1.age > user2.age) {
-    return user1.name
+    return user1
   } else {
-    return user2.name
+    return user2
   }
 
-  }
+}
 
 let result = getOlderUser(user1, user2)
-console.log('Старший пользователь:',result);
+console.log('Старший пользователь:', result);
 
 
 // // Не обязательная часть задания
@@ -46,15 +46,20 @@ let allUsers = [
   }
 ]
 
-function getOlderUserArray(usersArray){
-  let arr = []
-  for (let i of usersArray) {
-    arr.push(i.age)
-  }
+function getOlderUserArray(usersArray) {
+  let olderUser = []
+  let maxAge = 0
 
-  let max = usersArray.filter( user => user.age >= Math.max(...arr))[0].name
-  return max
+  for (let user of usersArray) {
+    if (user.age > maxAge) {
+      maxAge = user.age
+      olderUser = user
+    } else if (user.age === maxAge) {
+      olderUser.push(user)
+    }
+  }
+  return olderUser
 }
 
 let result2 = getOlderUserArray(allUsers)
-console.log('Старший пользователь:',result2);
+console.log('Старший пользователь:', result2);
