@@ -6,17 +6,18 @@ let studentObj = {
 
 
 function createStudentCard(studentObj) {
-  let student = studentObj;
   let div = document.createElement('div');
-  document.body.append(div);
 
   let h2 = document.createElement('h2');
-  h2.textContent = student.name
+  h2.textContent = studentObj.name
   div.append(h2)
 
   let span = document.createElement('span')
-  span.textContent = student.age
+  span.textContent = studentObj.age
   div.append(span)
+
+  return div
 }
 
-createStudentCard(studentObj)
+document.body.append(createStudentCard(studentObj));
+

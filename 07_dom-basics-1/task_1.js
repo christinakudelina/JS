@@ -1,7 +1,6 @@
 // Задание 1
 function createStudentCard(name, age) {
   let div = document.createElement('div');
-  document.body.append(div);
 
   let h2 = document.createElement('h2');
   h2.textContent = name
@@ -10,6 +9,8 @@ function createStudentCard(name, age) {
   let span = document.createElement('span')
   span.textContent = age
   div.append(span)
+
+  return div
 }
 
-createStudentCard('Игорь', 17)
+document.body.append(createStudentCard('Игорь', 17))
