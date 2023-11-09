@@ -101,8 +101,6 @@ inputBD.classList.add('form-control', 'mb-3')
 inputYearStart.classList.add('form-control', 'mb-3')
 inputFaculty.classList.add('form-control', 'mb-3')
 formBtn.classList.add('btn', 'btn-primary')
-sortAgeBtn.classList.add('btn', 'btn-primary', 'btn-age', 'mb-3')
-sortYearStartBtn.classList.add('btn', 'btn-primary', 'mb-3')
 filterFIOInput.classList.add('form-control', 'mb-3')
 filterFacultyInput.classList.add('form-control', 'mb-3')
 filterYearStartInput.classList.add('form-control', 'mb-3')
@@ -147,8 +145,6 @@ form.append(inputFaculty)
 form.append(formBtn)
 listData.append(form)
 listData.append(filterTitle)
-listData.append(sortAgeBtn)
-listData.append(sortYearStartBtn)
 filterForm.append(filterFIOInput)
 filterForm.append(filterFacultyInput)
 filterForm.append(filterYearStartInput)
@@ -183,6 +179,11 @@ listData.append(table)
 
 table.classList.add('table', 'table-hover', 'table-active', 'table-bordered')
 tableCaption.classList.add('caption-top')
+
+tableThFIO.classList.add('sort')
+tableThBD.classList.add('sort')
+tableThYearStart.classList.add('sort')
+tableThFaсulty.classList.add('sort')
 
 // Этап 3. Создайте функцию вывода одного студента в таблицу, по аналогии с тем,
 // как вы делали вывод одного дела в модуле 8. Функция должна вернуть html элемент
@@ -350,14 +351,26 @@ form.addEventListener('submit', function (event) {
 })
 
 // Этап 5. Создайте функцию сортировки массива студентов и добавьте события кликов на соответствующие колонки.
-sortAgeBtn.addEventListener('click', function(){
+tableThFIO.addEventListener('click', function(){
+  sortCol = 'name'
+  sortDir = !sortDir
+  renderStudentsTable(studentsList)
+})
+
+tableThBD.addEventListener('click', function(){
   sortCol = 'age'
   sortDir = !sortDir
   renderStudentsTable(studentsList)
 })
 
-sortYearStartBtn.addEventListener('click', function(){
+tableThYearStart.addEventListener('click', function(){
   sortCol = 'yearStart'
+  sortDir = !sortDir
+  renderStudentsTable(studentsList)
+})
+
+tableThFaсulty.addEventListener('click', function(){
+  sortCol = 'faculty'
   sortDir = !sortDir
   renderStudentsTable(studentsList)
 })
@@ -387,9 +400,5 @@ filterFacultyInput.addEventListener('input', function(){
 })
 
 filterYearStartInput.addEventListener('input', function(){
-  renderStudentsTable(studentsList)
-})
-
-filterYearEndInput.addEventListener('input', function(){
   renderStudentsTable(studentsList)
 })

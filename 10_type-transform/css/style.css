@@ -24,6 +24,6 @@ input[type="date"]:focus::before {
   display: block;
 }
 
-.btn-age{
-  margin-right: 10px;
+.sort {
+  cursor: pointer;
 }
