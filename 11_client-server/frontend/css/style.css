@@ -1,0 +1,36 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+.content {
+  padding: 15px 0;
+}
+
+input[type="date"]::before{
+  color: #616469;
+  content: attr(placeholder) ":";
+}
+input[type="date"]:focus::before {
+  content: "" !important;
+}
+
+.error {
+  display: block;
+}
+
+.sort {
+  cursor: pointer;
+}
+
+.delete-td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
