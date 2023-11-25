@@ -278,36 +278,6 @@ function renderStudentsTable(studentsArray) {
 
 renderStudentsTable(studentsList)
 
-// Этап 5. К форме добавления студента добавьте слушатель события отправки формы,
-// в котором будет проверка введенных данных.Если проверка пройдет успешно, добавляйте
-// объект с данными студентов в массив студентов и запустите функцию отрисовки таблицы
-// студентов, созданную на этапе 4.
-let newStudentObg
-
-async function addStudent(array) {
-  newStudentObg = {
-    name: inputName.value.trim(),
-    surname: inputSurName.value.trim(),
-    lastname: inputLastName.value.trim(),
-    birthday: new Date(inputBD.value.trim()),
-    studyStart: Number(inputstudyStart.value.trim()),
-    faculty: inputFaculty.value.trim(),
-  }
-
-  array.push(newStudentObg)
-
-  renderStudentsTable(array)
-
-  inputName.value = ''
-  inputSurName.value = ''
-  inputLastName.value = ''
-  inputBD.value = ''
-  inputstudyStart.value = ''
-  inputFaculty.value = ''
-
-  removeError()
-}
-
 function removeError() {
   if (inputName.value.trim() !== '') {
     nameError.classList.remove('error')
@@ -358,13 +328,31 @@ form.addEventListener('submit', async function (event) {
   addError()
   removeError()
 
-  if (inputName.value !== '' && inputLastName.value !== '' && inputBD.value
-    !== '' && inputstudyStart.value !== '' && inputFaculty.value !== '') {
-    addStudent(studentsList)
+  let newStudentObg = {
+    name: inputName.value.trim(),
+    surname: inputSurName.value.trim(),
+    lastname: inputLastName.value.trim(),
+    birthday: new Date(inputBD.value.trim()),
+    studyStart: Number(inputstudyStart.value.trim()),
+    faculty: inputFaculty.value.trim(),
   }
 
-  let serverDataObg = await serverAddStudent(newStudentObg);
-  serverDataObg.birthday = new Date(serverDataObg.birthday)
+  if (inputName.value !== '' && inputLastName.value !== '' && inputBD.value
+    !== '' && inputstudyStart.value !== '' && inputFaculty.value !== '') {
+    let serverDataObg = await serverAddStudent(newStudentObg);
+    serverDataObg.birthday = new Date(serverDataObg.birthday)
+
+    studentsList.push(serverDataObg)
+    renderStudentsTable(studentsList)
+  }
+  inputName.value = ''
+    inputSurName.value = ''
+    inputLastName.value = ''
+    inputBD.value = ''
+    inputstudyStart.value = ''
+    inputFaculty.value = ''
+
+    removeError()
 })
 
 // Этап 5. Создайте функцию сортировки массива студентов и добавьте события кликов на соответствующие колонки.
